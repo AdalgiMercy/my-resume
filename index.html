@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>André Adonis MOUNGUENGUI | Product Owner & Digital Project Manager</title>
+    <title>André Adonis MOUNGUENGUI | Assistant Chef de Projet Web & Product Creator</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,22 @@
             --accent: #00BCD4;
             --accent-hover: #008ba3;
             --border-light: #e0e0e0;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --tag-bg: #eefbfc;
+            --footer-bg: #1A1A2E;
+            --footer-text: #ffffff;
+        }
+
+        body.dark-mode {
+            --primary-bg: #0a0a12;
+            --card-bg: #16213e;
+            --text-main: #ffffff;
+            --text-light: #cccccc;
+            --border-light: #2a2a40;
+            --nav-bg: rgba(22, 33, 62, 0.95);
+            --tag-bg: rgba(0, 188, 212, 0.15);
+            --footer-bg: #050508;
+            --footer-text: #cccccc;
         }
 
         * {
@@ -63,7 +79,7 @@
 
         /* --- NAVIGATION --- */
         nav {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: var(--nav-bg);
             padding: 1rem 5%;
             position: fixed;
             width: 100%;
@@ -240,7 +256,7 @@
 
         .tech-tag {
             font-size: 0.75rem;
-            background: #eefbfc;
+            background: var(--tag-bg);
             color: var(--accent);
             padding: 4px 10px;
             border-radius: 20px;
@@ -307,8 +323,8 @@
 
         /* --- CONTACT / FOOTER --- */
         footer {
-            background-color: var(--text-main);
-            color: white;
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
             padding: 4rem 10% 2rem;
             text-align: center;
         }
@@ -342,6 +358,51 @@
                 padding: 0 5%;
             }
         }
+
+        /* --- LANGUAGE SWITCHER --- */
+        [lang="fr"] {
+            display: none;
+        }
+
+        body.fr-mode [lang="en"] {
+            display: none;
+        }
+
+        body.fr-mode [lang="fr"] {
+            display: revert;
+        }
+
+        .lang-toggle {
+            cursor: pointer;
+            border: 1px solid var(--accent);
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: var(--accent);
+            font-size: 0.9rem;
+            background: transparent;
+            font-weight: 600;
+        }
+
+        .lang-toggle:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            margin-left: 10px;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg) scale(1.1);
+            color: var(--accent);
+        }
     </style>
 </head>
 
@@ -350,77 +411,145 @@
     <nav>
         <div class="logo">André Adonis <span>MOUNGUENGUI</span></div>
         <div class="nav-links">
-            <a href="#about">Profile</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
+            <a href="#about">
+                <span lang="en">Profile</span>
+                <span lang="fr">Profil</span>
+            </a>
+            <a href="#experience">
+                <span lang="en">Experience</span>
+                <span lang="fr">Expérience</span>
+            </a>
+            <a href="#projects">
+                <span lang="en">Projects</span>
+                <span lang="fr">Projets</span>
+            </a>
+            <a href="#skills">
+                <span lang="en">Skills</span>
+                <span lang="fr">Compétences</span>
+            </a>
             <a href="#contact">Contact</a>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="lang-toggle" onclick="toggleLanguage()">FR</button>
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
     <header class="hero">
-        <p style="color: var(--accent); font-weight: 600; margin-bottom: 10px;">Future Product Owner / Digital Project
-            Manager</p>
-        <h1>Building Innovative<br>Digital Solutions with <span>AI.</span></h1>
-        <p class="tagline">Moving from Networks & Telecoms towards the creation of advanced user-centric web products.
+        <p style="color: var(--accent); font-weight: 600; margin-bottom: 10px;">
+            <span lang="en">Assistant Chef de Projet Web | Product Creator | AI Enthusiast</span>
+            <span lang="fr">Assistant Chef de Projet Web | Créateur de Produit | Passionné d'IA</span>
+        </p>
+        <h1 lang="en">Transforming Ideas into<br>Impactful Products with <span>AI.</span></h1>
+        <h1 lang="fr">Transformer des Idées en<br>Produits Impactants avec l'<span>IA.</span></h1>
+
+        <p class="tagline">
+            <span lang="en">I build innovative web solutions, combining product ownership, design, and advanced AI
+                integration.</span>
+            <span lang="fr">Je conçois des solutions web innovantes, alliant product ownership, design et intégration
+                avancée de l'IA.</span>
         </p>
         <div class="btn-group">
-            <a href="mailto:andreadonismercy@gmail.com" class="btn btn-primary">Let's Build Together</a>
-            <a href="#projects" class="btn btn-outline">View Projects</a>
+            <a href="mailto:andreadonismercy@gmail.com" class="btn btn-primary">
+                <span lang="en">Let's Build Together</span>
+                <span lang="fr">Collaborons Ensemble</span>
+            </a>
+            <a href="#projects" class="btn btn-outline">
+                <span lang="en">View Projects</span>
+                <span lang="fr">Voir les Projets</span>
+            </a>
         </div>
     </header>
 
     <section id="about">
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title">
+            <span lang="en">Profile</span>
+            <span lang="fr">Profil</span>
+        </h2>
         <div class="about-content">
-            <p>
-                I am a <strong>Networks and Telecoms Technician</strong> who successfully pivoted in 2022
-                towards the conception and support of web projects at <strong>Riverfortress SARL</strong>.
-                <br><br>
-                My strength lies in a unique blend of technical discipline and product creativity, boosted
-                by advanced skills in <strong>AI Prompt Engineering</strong> (ChatGPT, Gemini, Copilot). I use
-                these tools to accelerate productivity and optimize deliverables.
-                <br><br>
-                <strong>My Mission:</strong> To become a Product Owner or Digital Project Manager and launch
-                a startup contributing to the digital development of Congo.
-            </p>
+            <div lang="en">
+                <p>
+                    I am a <strong>digital project manager and product creator</strong> with a strong foundation in
+                    networks and telecommunications, now focused on building innovative web solutions. After leading
+                    user-centric projects at <strong>Riverfortress SARL</strong>, I am co‑founding and developing
+                    independent SaaS platforms from concept to deployment. My expertise spans product ownership, UX/UI
+                    design, frontend and backend development, and advanced AI integration.
+                    <br><br>
+                    Driven by curiosity and continuous learning, I thrive on transforming ideas into impactful products.
+                    My ambition is to grow into a <strong>Product Owner</strong> or <strong>Digital Project
+                        Manager</strong>, while leveraging my technical foundation and AI skills to deliver scalable
+                    solutions in diverse, international contexts.
+                </p>
+            </div>
+            <div lang="fr">
+                <p>
+                    Je suis un <strong>chef de projet numérique et créateur de produits</strong> avec une solide base en
+                    réseaux et télécommunications, désormais axé sur la création de solutions web innovantes. Après
+                    avoir dirigé des projets centrés sur l'utilisateur chez <strong>Riverfortress SARL</strong>, je
+                    co-fonde et développe des plateformes SaaS indépendantes, de la conception au déploiement. Mon
+                    expertise couvre le product ownership, le design UX/UI, le développement frontend et backend, ainsi
+                    que l'intégration avancée de l'IA.
+                    <br><br>
+                    Animé par la curiosité et l'apprentissage continu, je m'épanouis en transformant des idées en
+                    produits impactants. Mon ambition est d'évoluer en tant que <strong>Product Owner</strong> ou
+                    <strong>Chef de Projet Numérique</strong>, tout en tirant parti de ma base technique et de mes
+                    compétences en IA pour fournir des solutions évolutives dans des contextes divers et internationaux.
+                </p>
+            </div>
         </div>
     </section>
 
     <section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
+        <h2 class="section-title">
+            <span lang="en">Featured Projects</span>
+            <span lang="fr">Projets Phares</span>
+        </h2>
         <div class="project-grid">
 
             <div class="project-card">
-                <span class="project-role">Concept / Product Owner</span>
-                <h3>Trading Journal SaaS</h3>
-                <p>An application concept to automate trader performance analysis and provide real-time AI Insight</p>
+                <span class="project-role" lang="en">Product Owner & Full-Stack Developer</span>
+                <span class="project-role" lang="fr">Product Owner & Développeur Full-Stack</span>
+                <h3>RestauApp (2025)</h3>
+                <p lang="en">AI-powered restaurant management operating system. Moves beyond standard POS by integrating
+                    predictive intelligence into workflows.</p>
+                <p lang="fr">Système d'exploitation de gestion de restaurant propulsé par l'IA. Va au-delà du POS
+                    standard en intégrant l'intelligence prédictive dans les flux de travail.</p>
                 <div class="tech-stack">
-                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">React.js</span>
                     <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">Native AI</span>
-                    <span class="tech-tag">Under development</span>
+                    <span class="tech-tag">Python (AI/ML)</span>
+                    <span class="tech-tag">PostgreSQL 15</span>
+                    <span class="tech-tag">Docker</span>
                 </div>
             </div>
 
             <div class="project-card">
-                <span class="project-role">Assistant PO</span>
-                <h3>Riverdox</h3>
-                <p>A SaaS platform for billing management currently under development. Managed
-                    backlog and requirements.</p>
+                <span class="project-role" lang="en">Co‑Founder & Product Designer</span>
+                <span class="project-role" lang="fr">Co-Fondateur & Product Designer</span>
+                <h3>Advanced Trading Journal</h3>
+                <p lang="en">All-in-one trading performance platform for professional and retail traders. Includes
+                    backtesting engine and risk management tools.</p>
+                <p lang="fr">Plateforme tout-en-un de performance de trading pour les traders professionnels et
+                    particuliers. Inclut un moteur de backtesting et des outils de gestion des risques.</p>
                 <div class="tech-stack">
-                    <span class="tech-tag">SaaS</span>
-                    <span class="tech-tag">Billing</span>
-                    <span class="tech-tag">Web App</span>
+                    <span class="tech-tag">MERN Stack</span>
+                    <span class="tech-tag">Analytics</span>
+                    <span class="tech-tag">Financial Tech</span>
                 </div>
             </div>
 
             <div class="project-card">
-                <span class="project-role">Project Support</span>
-                <h3>Tabita Allegresse Foundation</h3>
-                <p>Website raising awareness for the fight against breast and uterine cancer
-                    <a href="https://tabita-allegresse.com">Tabita Allegresse Foundation</a>
-                </p>
+                <span class="project-role" lang="en">Project Support</span>
+                <span class="project-role" lang="fr">Support Projet</span>
+                <h3>Fondation Tabita Allegresse</h3>
+                <p lang="en">Website raising awareness for the fight against breast and uterine cancer. <a
+                        href="https://tabita-allegresse.com" target="_blank"
+                        style="color:var(--accent);">tabita-allegresse.com</a></p>
+                <p lang="fr">Site web de sensibilisation à la lutte contre le cancer du sein et de l’utérus. <a
+                        href="https://tabita-allegresse.com" target="_blank"
+                        style="color:var(--accent);">tabita-allegresse.com</a></p>
                 <div class="tech-stack">
                     <span class="tech-tag">Web Site</span>
                     <span class="tech-tag">Non-Profit</span>
@@ -428,43 +557,82 @@
                 </div>
             </div>
 
+            <div class="project-card">
+                <span class="project-role" lang="en">Project Support</span>
+                <span class="project-role" lang="fr">Support Projet</span>
+                <h3>CNTR</h3>
+                <p lang="en">National Commission for Transparency and Responsibility in Public Finance Management. <a
+                        href="https://cntr.cg" target="_blank" style="color:var(--accent);">cntr.cg</a></p>
+                <p lang="fr">Commission nationale de transparence et de responsabilité dans la gestion des finances
+                    publiques. <a href="https://cntr.cg" target="_blank" style="color:var(--accent);">cntr.cg</a></p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Institutional</span>
+                    <span class="tech-tag">Public Finance</span>
+                    <span class="tech-tag">Web Portal</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <section id="skills">
-        <h2 class="section-title">Expertise & Toolkit</h2>
+        <h2 class="section-title">
+            <span lang="en">Skills</span>
+            <span lang="fr">Compétences</span>
+        </h2>
         <div class="skills-container">
 
             <div class="skill-box">
                 <i class="fa-solid fa-list-check"></i>
-                <h3>Project Management</h3>
-                <ul class="skill-list">
-                    <li>Web project management</li>
-                    <li>User needs analysis</li>
-                    <li>Backlog prioritization </li>
-                    <li><strong>Tools:</strong> Trello, Notion, Figma </li>
+                <h3 lang="en">Product & Project Management</h3>
+                <h3 lang="fr">Gestion de Projet & Produit</h3>
+                <ul class="skill-list" lang="en">
+                    <li>Agile, Kanban, Sprint Planning</li>
+                    <li>UX/UI Design (Figma)</li>
+                    <li>User Needs Analysis</li>
+                    <li><strong>Tools:</strong> Trello, Notion, Jira</li>
+                </ul>
+                <ul class="skill-list" lang="fr">
+                    <li>Agile, Kanban, Planification de Sprint</li>
+                    <li>Design UX/UI (Figma)</li>
+                    <li>Analyse des Besoins Utilisateurs</li>
+                    <li><strong>Outils:</strong> Trello, Notion, Jira</li>
+                </ul>
+            </div>
+
+            <div class="skill-box">
+                <i class="fa-solid fa-code"></i>
+                <h3 lang="en">Technical</h3>
+                <h3 lang="fr">Technique</h3>
+                <ul class="skill-list" lang="en">
+                    <li>React.js, Node.js</li>
+                    <li>PostgreSQL, Docker</li>
+                    <li>Python (AI/ML)</li>
+                    <li>Networks & Telecoms Base</li>
+                </ul>
+                <ul class="skill-list" lang="fr">
+                    <li>React.js, Node.js</li>
+                    <li>PostgreSQL, Docker</li>
+                    <li>Python (IA/ML)</li>
+                    <li>Bases en Réseaux & Télécoms</li>
                 </ul>
             </div>
 
             <div class="skill-box">
                 <i class="fa-solid fa-robot"></i>
-                <h3>AI & Innovation</h3>
-                <ul class="skill-list">
-                    <li>Prompt Engineering </li>
-                    <li>Automation with AI</li>
-                    <li>Assisted documentation</li>
-                    <li><strong>Tools:</strong> ChatGPT, Gemini, Copilot </li>
+                <h3 lang="en">AI Expertise</h3>
+                <h3 lang="fr">Expertise IA</h3>
+                <ul class="skill-list" lang="en">
+                    <li>Prompt Engineering</li>
+                    <li>AI Workflow Integration</li>
+                    <li>Automation</li>
+                    <li><strong>Tools:</strong> ChatGPT, Gemini, Copilot</li>
                 </ul>
-            </div>
-
-            <div class="skill-box">
-                <i class="fa-solid fa-server"></i>
-                <h3>Technical Core</h3>
-                <ul class="skill-list">
-                    <li>CCNA/CCNP Switching-Routing </li>
-                    <li>Linux (Ubuntu, Debian)</li>
-                    <li>Virtualisation (VMware, Docker)</li>
-                    <li>Python, HTML/CSS, JavaScript </li>
+                <ul class="skill-list" lang="fr">
+                    <li>Prompt Engineering</li>
+                    <li>Intégration de Flux IA</li>
+                    <li>Automatisation</li>
+                    <li><strong>Outils:</strong> ChatGPT, Gemini, Copilot</li>
                 </ul>
             </div>
 
@@ -472,71 +640,101 @@
     </section>
 
     <section id="experience">
-        <h2 class="section-title">Professional Journey</h2>
+        <h2 class="section-title">
+            <span lang="en">Experience</span>
+            <span lang="fr">Expérience</span>
+        </h2>
         <div class="timeline">
 
             <div class="timeline-item">
-                <span class="timeline-date">2022 – Présent</span>
-                <h3>Assistant Web Project Manager/ Product Owner Junior</h3>
-                <h4 style="color: var(--text-light); font-size: 0.9rem;">Riverfortress SARL | Brazzaville</h4>
-                <p style="margin-top: 10px;">
-                    Identifying user needs, defining functional specifications and managing the product backlog for web
-                    applications.
-                </p>
+                <span class="timeline-date" lang="en">2022 – Present</span>
+                <span class="timeline-date" lang="fr">2022 – Présent</span>
+                <h3>Assistant Chef de Projet Web</h3>
+                <h4 style="color: var(--text-light); font-size: 0.9rem;">Riverfortress SARL</h4>
+                <div lang="en">
+                    <p style="margin-top: 10px;">
+                        Supported conception and integration of web projects with a focus on UX/UI design.
+                        Applied agile methodologies (Kanban, sprint planning) to improve project delivery.
+                        Collaborated across technical and creative teams to ensure user-centric outcomes.
+                    </p>
+                </div>
+                <div lang="fr">
+                    <p style="margin-top: 10px;">
+                        Support à la conception et à l'intégration de projets web avec un accent sur le design UX/UI.
+                        Application des méthodologies agiles (Kanban, planification de sprint) pour améliorer la
+                        livraison des projets.
+                        Collaboration avec les équipes techniques et créatives pour garantir des résultats centrés sur
+                        l'utilisateur.
+                    </p>
+                </div>
             </div>
 
             <div class="timeline-item">
-                <span class="timeline-date">2017 – 2022</span>
-                <h3>Independent Helpdesk Technician & Trainer</h3>
-                <h4 style="color: var(--text-light); font-size: 0.9rem;">Freelance | Brazzaville</h4>
-                <p style="margin-top: 10px;">
-                    Maintained operating systems (Windows, Mac OS X, GNU/Linux), and performed hardware and software
-                    troubleshooting.
-                </p>
-                <p>Provided office automation and IT maintenance training for startups, individuals, and cybercafés.</p>
-            </div>
-
-            <div class="timeline-item">
-                <span class="timeline-date">Juillet – Septembre 2021</span>
-                <h3>IT Maintenance Trainer</h3>
-                <h4 style="color: var(--text-light); font-size: 0.9rem;">Groupe But Télécom</h4>
-                <p style="margin-top: 10px;">
-                    Trained 20+ students in hardware and software maintenance.
-                </p>
+                <span class="timeline-date" lang="en">2023 – Present</span>
+                <span class="timeline-date" lang="fr">2023 – Présent</span>
+                <h3 lang="en">Founder / Co‑Founder / Developer</h3>
+                <h3 lang="fr">Fondateur / Co-Fondateur / Développeur</h3>
+                <h4 style="color: var(--text-light); font-size: 0.9rem;">Independent Projects</h4>
+                <div lang="en">
+                    <p style="margin-top: 10px;">
+                        Conceived and developed SaaS and digital solutions from idea to deployment.
+                        Integrated AI workflows and automation into product design.
+                        Balanced product vision with technical execution across frontend and backend.
+                    </p>
+                </div>
+                <div lang="fr">
+                    <p style="margin-top: 10px;">
+                        Conception et développement de solutions SaaS et numériques, de l'idée au déploiement.
+                        Intégration de flux de travail IA et d'automatisation dans la conception de produits.
+                        Équilibre entre la vision produit et l'exécution technique sur le frontend et le backend.
+                    </p>
+                </div>
             </div>
 
         </div>
     </section>
 
     <section id="education">
-        <h2 class="section-title">Education</h2>
+        <h2 class="section-title">
+            <span lang="en">Education</span>
+            <span lang="fr">Éducation</span>
+        </h2>
         <div style="display: grid; gap: 1rem;">
-            <div style="background: white; padding: 1.5rem; border-radius: 8px;">
-                <h3>Master 1 of Computer science and engineering </h3>
+            <div class="project-card">
+                <h3 lang="en">Master 1 of Computer science and engineering</h3>
+                <h3 lang="fr">Master 1 en Informatique et Ingénierie</h3>
                 <p>ITER COLLEGE| SOA UNIVERSITY | INDIA (2022-2023)</p>
-                <p style="color: var(--accent); font-weight: 600;">Grade : First Class Honours</p>
+
             </div>
-            <div style="background: white; padding: 1.5rem; border-radius: 8px;">
-                <h3>Professional Bachelor's Degree in Networks and Telecommunications</h3>
+            <div class="project-card">
+                <h3 lang="en">Professional Bachelor's Degree in Networks and Telecommunications</h3>
+                <h3 lang="fr">Licence Professionnelle en Réseaux et Télécommunications</h3>
                 <p>Institute of Applied Professional Education (IAPE), Brazzaville (2017-2020)</p>
                 <p style="color: var(--accent); font-weight: 600;">Grade : First Class Honours</p>
             </div>
-            <div style="background: white; padding: 1.5rem; border-radius: 8px;">
+            <div class="project-card">
                 <h3>Baccalaureate "C" (Mathematics)</h3>
                 <p>KINTELE High School, Brazzaville (2016) </p>
             </div>
         </div>
     </section>
     <section id="languages">
-        <h2 class="section-title">Languages</h2>
+        <h2 class="section-title">
+            <span lang="en">Languages</span>
+            <span lang="fr">Langues</span>
+        </h2>
         <div style="display: grid; gap: 1rem;">
-            <div style="background: white; padding: 1.5rem; border-radius: 8px;">
-                <h3>French : Native Language</h3>
-                <p>Fluent in both written and spoken French.</p>
+            <div class="project-card">
+                <h3 lang="en">French : Native Language</h3>
+                <h3 lang="fr">Français : Langue Maternelle</h3>
+                <p lang="en">Fluent in both written and spoken French.</p>
+                <p lang="fr">Courant à l'écrit et à l'oral.</p>
             </div>
-            <div style="background: white; padding: 1.5rem; border-radius: 8px;">
-                <h3>English: Fluent</h3>
-                <p>Fluent in both written and spoken English</p>
+            <div class="project-card">
+                <h3 lang="en">English: Fluent</h3>
+                <h3 lang="fr">Anglais : Courant</h3>
+                <p lang="en">Fluent in both written and spoken English</p>
+                <p lang="fr">Courant à l'écrit et à l'oral</p>
             </div>
         </div>
     </section>
@@ -544,8 +742,13 @@
 
     <footer id="contact">
         <div class="contact-cta">
-            <h2>Ready to innovate?</h2>
-            <p style="margin-bottom: 2rem;">I am available for Product Owner and Project Management roles.</p>
+            <h2 lang="en">Ready to innovate?</h2>
+            <h2 lang="fr">Prêt à innover ?</h2>
+
+            <p lang="en" style="margin-bottom: 2rem;">I am available for Product Owner and Project Management roles.</p>
+            <p lang="fr" style="margin-bottom: 2rem;">Je suis disponible pour des missions de Product Owner et de
+                Gestion de Projet.</p>
+
             <a href="mailto:andreadonismercy@gmail.com" class="btn btn-primary">andreadonismercy@gmail.com</a>
         </div>
 
@@ -555,9 +758,65 @@
         </div>
     </footer>
 
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            const btn = document.querySelector('.lang-toggle');
+
+            if (body.classList.contains('fr-mode')) {
+                body.classList.remove('fr-mode');
+                btn.textContent = 'FR';
+                localStorage.setItem('lang', 'en');
+            } else {
+                body.classList.add('fr-mode');
+                btn.textContent = 'EN';
+                localStorage.setItem('lang', 'fr');
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.querySelector('.theme-toggle i');
+
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize language and theme
+        (function () {
+            // Lang
+            const savedLang = localStorage.getItem('lang');
+            const langBtn = document.querySelector('.lang-toggle');
+            if (savedLang === 'fr') {
+                document.body.classList.add('fr-mode');
+                if (langBtn) langBtn.textContent = 'EN';
+            }
+
+            // Theme
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.querySelector('.theme-toggle i');
+            // Check system preference if no saved theme
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.classList.add('dark-mode');
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                }
+            }
+        })();
+    </script>
+
 </body>
 
-
 </html>
-
-
