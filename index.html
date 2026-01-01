@@ -321,6 +321,184 @@
             display: block;
         }
 
+        /* --- GALLERY --- */
+        #gallery {
+            background-color: var(--primary-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .gallery-grid {
+            columns: 4 250px;
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card-bg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.3);
+            z-index: 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            transition: filter 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            filter: brightness(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+            transform: translateY(20px);
+            transition: transform 0.3s ease 0.1s;
+        }
+
+        .gallery-item:hover .gallery-overlay i {
+            transform: translateY(0);
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0, 188, 212, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 2001;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            padding: 20px;
+            transition: all 0.3s ease;
+            user-select: none;
+            z-index: 2001;
+        }
+
+        .lightbox-nav:hover {
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                columns: 2 200px;
+            }
+
+            .lightbox-nav {
+                font-size: 2rem;
+                padding: 10px;
+            }
+
+            .lightbox-prev {
+                left: 5px;
+            }
+
+            .lightbox-next {
+                right: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                columns: 1 auto;
+            }
+        }
+
         /* --- CONTACT / FOOTER --- */
         footer {
             background-color: var(--footer-bg);
@@ -506,6 +684,10 @@
                 <span lang="en">Projects</span>
                 <span lang="fr">Projets</span>
             </a>
+            <a href="#gallery">
+                <span lang="en">Gallery</span>
+                <span lang="fr">Galerie</span>
+            </a>
             <a href="#skills">
                 <span lang="en">Skills</span>
                 <span lang="fr">Compétences</span>
@@ -655,6 +837,72 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title">
+            <span lang="en">Project Gallery</span>
+            <span lang="fr">Galerie des Projets</span>
+        </h2>
+        <div class="gallery-intro">
+            <p lang="en">Discovery <strong>RestauApp</strong> through these immersive visuals. A platform designed to
+                revolutionize restaurant management with AI.</p>
+            <p lang="fr">Découvrez <strong>RestauApp</strong> à travers ces visuels immersifs. Une plateforme conçue
+                pour révolutionner la gestion de restaurant grâce à l'IA.</p>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- JavaScript will populate images -->
+            <!-- Fallback hardcoded images to ensure they appear even if JS fails or for initial render -->
+            <div class="gallery-item" onclick="openLightbox(0)">
+                <img src="gallery/restau-app/image0.png" alt="RestauApp Dashboard" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(1)">
+                <img src="gallery/restau-app/image1.png" alt="RestauApp Interface" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <img src="gallery/restau-app/image3.png" alt="RestauApp Feature" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(3)">
+                <img src="gallery/restau-app/image4.png" alt="RestauApp Analytics" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(4)">
+                <img src="gallery/restau-app/image5.png" alt="RestauApp Menu" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(5)">
+                <img src="gallery/restau-app/image6.png" alt="RestauApp Orders" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(6)">
+                <img src="gallery/restau-app/image7.png" alt="RestauApp Mobile" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(7)">
+                <img src="gallery/restau-app/image8.png" alt="RestauApp Settings" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(8)">
+                <img src="gallery/restau-app/image9.png" alt="RestauApp Detail" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(9)">
+                <img src="gallery/restau-app/image10.png" alt="RestauApp Visual" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(10)">
+                <img src="gallery/restau-app/image11.png" alt="RestauApp Overview" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(11)">
+                <img src="gallery/restau-app/image12.png" alt="RestauApp Design" loading="lazy">
+                <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
+            </div>
         </div>
     </section>
 
@@ -828,8 +1076,9 @@
             <h2 lang="en">Ready to innovate?</h2>
             <h2 lang="fr">Prêt à innover ?</h2>
 
-            <p lang="en" style="margin-bottom: 2rem;">I am available for a job offer.</p>
-            <p lang="fr" style="margin-bottom: 2rem;">Je suis disponible pour une offre d'emploi.</p>
+            <p lang="en" style="margin-bottom: 2rem;">I am available for Product Owner and Project Management roles.</p>
+            <p lang="fr" style="margin-bottom: 2rem;">Je suis disponible pour des missions de Product Owner et de
+                Gestion de Projet.</p>
 
             <a href="mailto:andreadonismercy@gmail.com" class="btn btn-primary">andreadonismercy@gmail.com</a>
         </div>
@@ -840,7 +1089,78 @@
         </div>
     </footer>
 
+    <!-- LIGHTBOX CONTAINER -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-nav lightbox-prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></div>
+        <div class="lightbox-nav lightbox-next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></div>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Gallery Preview">
+    </div>
+
     <script>
+        /* --- GALLERY LIGHTBOX LOGIC --- */
+        const galleryImages = [
+            "gallery/restau-app/image0.png",
+            "gallery/restau-app/image1.png",
+            "gallery/restau-app/image3.png",
+            "gallery/restau-app/image4.png",
+            "gallery/restau-app/image5.png",
+            "gallery/restau-app/image6.png",
+            "gallery/restau-app/image7.png",
+            "gallery/restau-app/image8.png",
+            "gallery/restau-app/image9.png",
+            "gallery/restau-app/image10.png",
+            "gallery/restau-app/image11.png",
+            "gallery/restau-app/image12.png"
+        ];
+
+        let currentImageIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            lightboxImg.src = galleryImages[currentImageIndex];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+
+            // Fade out slightly
+            lightboxImg.style.opacity = '0.5';
+
+            setTimeout(() => {
+                lightboxImg.src = galleryImages[currentImageIndex];
+                lightboxImg.style.opacity = '1';
+            }, 200);
+        }
+
+        // Close on outside click
+        if (lightbox) {
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox || !lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+
         function toggleLanguage() {
             const body = document.body;
             const btn = document.querySelector('.lang-toggle');
@@ -931,4 +1251,3 @@
 </body>
 
 </html>
-
